@@ -13,6 +13,4 @@ def encripta_mensagem(texto, shift = 3):
     return mensagem
 
 
-print(encripta_mensagem('Nathan'))
-
-
+print(encripta_mensagem('João Rato da Web'))
