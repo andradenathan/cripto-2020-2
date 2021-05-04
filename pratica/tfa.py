@@ -17,4 +17,4 @@ def fatoracao_em_primos(n):
         lista.append(p)
     return lista
 
-print(fatoracao_em_primos(11*131))
+print(fatoracao_em_primos(30))
