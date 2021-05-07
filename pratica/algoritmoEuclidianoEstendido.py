@@ -22,6 +22,7 @@ def euclides_estendido(a, b):
 
         dividendo, divisor = divisor, resto
 
+        print(dividendo, x_antigo, y_antigo)
     return dividendo, x_antigo, y_antigo
 
 print(euclides_estendido(561, 1995))
