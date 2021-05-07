@@ -14,14 +14,13 @@ def numeros_altamente_compostos(n):
 
     for i in range(1, n+1):
         contador = 0
-        quant_divisores = lista[i]
         for j in range(1, i):
-            if lista[j] >= quant_divisores:
+            if lista[j] >= lista[i]:
                 contador += 1
         if contador == 0:
             lista_numeros_altamente_compostos.append(i)
 
     return lista_numeros_altamente_compostos
 
-print(numeros_altamente_compostos(5000))
+print(numeros_altamente_compostos(10))
 
