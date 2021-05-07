@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e87317a-f35e-4081-99e6-82728d1d0583" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pratica/algoritmoEuclidianoEstendido.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pratica/crivoDeErastotenes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exercicios/nac.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pratica/euclidesEstendido.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pratica/tfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/pratica/tfa.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,28 +48,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.numAltamenteComposto">
-    <configuration name="algoritmoEuclidianoEstendido" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="cripto-2020-2" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pratica" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pratica/algoritmoEuclidianoEstendido.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.nac">
     <configuration name="crivoDeErastotenes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cripto-2020-2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -136,6 +112,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="nac" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cripto-2020-2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/exercicios" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/exercicios/nac.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="numAltamenteComposto" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cripto-2020-2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -180,19 +177,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.euclidesEstendido" />
-      <item itemvalue="Python.algoritmoEuclidianoEstendido" />
       <item itemvalue="Python.tfa" />
       <item itemvalue="Python.crivoDeEratostenes" />
       <item itemvalue="Python.numAltamenteComposto" />
       <item itemvalue="Python.crivoDeErastotenes" />
+      <item itemvalue="Python.nac" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.nac" />
         <item itemvalue="Python.numAltamenteComposto" />
         <item itemvalue="Python.crivoDeErastotenes" />
         <item itemvalue="Python.tfa" />
         <item itemvalue="Python.crivoDeEratostenes" />
-        <item itemvalue="Python.algoritmoEuclidianoEstendido" />
       </list>
     </recent_temporary>
   </component>
@@ -228,22 +225,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="462" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1620175771098" />
-    <state width="1345" height="168" key="GridCell.Tab.0.bottom" timestamp="1620360579449">
+    <state width="1345" height="168" key="GridCell.Tab.0.bottom" timestamp="1620363129142">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="168" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1620360579449" />
-    <state width="1345" height="168" key="GridCell.Tab.0.center" timestamp="1620360579449">
+    <state width="1345" height="168" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1620363129142" />
+    <state width="1345" height="168" key="GridCell.Tab.0.center" timestamp="1620363129142">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="168" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1620360579449" />
-    <state width="1345" height="168" key="GridCell.Tab.0.left" timestamp="1620360579449">
+    <state width="1345" height="168" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1620363129142" />
+    <state width="1345" height="168" key="GridCell.Tab.0.left" timestamp="1620363129142">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="168" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1620360579449" />
-    <state width="1345" height="168" key="GridCell.Tab.0.right" timestamp="1620360579449">
+    <state width="1345" height="168" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1620363129142" />
+    <state width="1345" height="168" key="GridCell.Tab.0.right" timestamp="1620363129142">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="168" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1620360579449" />
+    <state width="1345" height="168" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1620363129142" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1620175516003">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
