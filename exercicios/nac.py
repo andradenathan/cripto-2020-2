@@ -1,9 +1,10 @@
-# Número Altamente Composto
-# Definição: seja d(x) os divisores de um número x inteiro qualquer, tal que se d(x) < d(y)
-# então d(x) é um número altamente composto.
+# Números Altamente Compostos
+# Definição: seja d(x) os divisores de um número x inteiro qualquer
+# tal que se d(x) < d(y), então d(x) é um número altamente composto.
 
 def numeros_altamente_compostos(n):
-    lista = [[]]
+    # Inicia a Lista com o length > 0 pois 0 tem infinitos divisores
+    lista = [0]
     lista_numeros_altamente_compostos = []
     for x in range(1, n + 1):
         divisores = 0
@@ -21,6 +22,5 @@ def numeros_altamente_compostos(n):
             lista_numeros_altamente_compostos.append(i)
 
     return lista_numeros_altamente_compostos
-
+    
 print(numeros_altamente_compostos(10))
-
