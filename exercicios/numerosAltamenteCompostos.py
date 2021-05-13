@@ -15,11 +15,11 @@ def numeros_altamente_compostos(n):
 	# altamente compostos respeitando a regra d(x) < d(y) e caso não seja 
 	# eliminaremos os números não altamente compostos 
 	
-	for k in range(1, n+1):
-		if maior >= dicionario.get(k):
-			del dicionario[k]
+	for i in range(1, n+1):
+		if maior >= dicionario.get(i):
+			del dicionario[i]
 		else:
-			maior = dicionario.get(k)
+			maior = dicionario.get(i)
 	
 	for k in dicionario.keys():
 		print(k)
