@@ -21,23 +21,19 @@ def crivo_erastotenes(n):
 
 	return lista_primos
 
-def gemeos_primos(k1, k2, limite):
+def gemeos_primos(k, limite):
 	"""
 	k-gêmeos são definidos por números primos que distam k um do outro
-	param k1: int -> int
-	param k2: int -> int
+	param k: int -> int
 	param limite: int -> int
 	return: list -> list
 	"""
 	lista_primos = crivo_erastotenes(limite)
 	lista_kgemeos_primos = []
-	for k in range(len(lista_primos)):
-		if (lista_primos[k] + k1) in lista_primos:
-			lista_kgemeos_primos.append([lista_primos[k], lista_primos[k] + k1])
-
-		if (lista_primos[k] + k2) in lista_primos:
-			lista_kgemeos_primos.append([lista_primos[k], lista_primos[k] + k2])
+	for i in range(len(lista_primos)):
+		if (lista_primos[i] + k) in lista_primos:
+			lista_kgemeos_primos.append([lista_primos[i], lista_primos[i] + k])
 
 	return lista_kgemeos_primos
 
-print(gemeos_primos(2, 4, 100000))
+print(gemeos_primos(10, 10000))
