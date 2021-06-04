@@ -15,7 +15,7 @@ def euclides_estendido(a, b):
 
     dividendo = a
     divisor = b
-
+    
     while divisor != 0:
         resto = dividendo % divisor
         quociente = dividendo // divisor
@@ -25,5 +25,4 @@ def euclides_estendido(a, b):
 
         dividendo, divisor = divisor, resto
 
-        print(dividendo, x_antigo, y_antigo)
-    return dividendo, x_antigo, y_antigo
+    return x_antigo

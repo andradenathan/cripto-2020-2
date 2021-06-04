@@ -1,4 +1,5 @@
 from millerRabin import miller_rabin
+from euclides import euclides, euclides_estendido
 from random import randrange
 
 # Códigos das letras & símbolos para encriptação/desencriptação de mensagens
@@ -41,13 +42,13 @@ def gera_primos(n):
     """
     Gera um número p primo tal que p é: (10 ** n) < p < (10 ** n+2)
     """
-    print('Gerando p...')
     while True:
         contador = 0
-        primo = randrange(pow(10, n-1), pow(10, n))
+        # Sorteia de 10^(n-1) <= primo < (10^n+2)
+        primo = randrange(pow(10, n-1), pow(10, n+2)) 
         if primo % 2 == 0:
             continue
-        for i in range(1, 12):
+        for _ in range(1, 11):
             base = randrange(1, primo)
             if(miller_rabin(primo, base) == 'Inconclusivo'):
                 contador += 1
@@ -56,3 +57,50 @@ def gera_primos(n):
     return primo
 
 # Questão 9b.
+def gera_chaves(p, q):
+    """
+    Gerador de chaves do RSA retornando o módulo público, chave pública
+    chave privada, o inverso de p mod q, inverso de q mod p
+    e a forma reduzida de d mod (p-1), (q-1) 
+    """
+    primo_p = gera_primos(p)
+    primo_q = gera_primos(q)
+    n = primo_p * primo_q
+    phi = (primo_p - 1) * (primo_q - 1)
+    e = 2
+    while euclides(e, phi) != 1:
+        e += 1
+
+    d = euclides_estendido(e, phi)
+    # Somamos ao d o phi para evitar um expoente d negativo
+    d += phi
+
+    forma_reduzida_d_p = pow(d, 1, primo_p-1)
+    forma_reduzida_d_q = pow(d, 1, primo_q-1)
+    
+    inverso_de_p = euclides_estendido(primo_p, primo_q)
+    if inverso_de_p < 0:
+        inverso_de_p += primo_q
+
+    inverso_de_q = euclides_estendido(primo_q, primo_p)
+    if inverso_de_q < 0:
+        inverso_de_q += primo_p
+
+
+    return n, e, d, primo_p, primo_q, inverso_de_p, inverso_de_q, forma_reduzida_d_p, forma_reduzida_d_q
+
+print(gera_chaves(3, 5))
+
+# Questão 9c.
+def quebra_em_blocos():
+    pass
+
+def encriptar(texto, n, e):
+    pass
+
+# Questão 9d.
+def junta_os_blocos():
+    pass
+
+def descriptar(blocos, n, d):
+    pass
