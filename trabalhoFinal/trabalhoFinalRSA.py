@@ -2,7 +2,7 @@ from millerRabin import miller_rabin
 from euclides import euclides, euclides_estendido
 from random import randrange
 
-# Códigos das letras & símbolos para encriptação/desencriptação de mensagens
+# Códigos das letras & símbolos para encriptação/desencriptação das mensagens
 códigos_para_símbolos = {111: '0', 112: '1', 113: '2', 114: '3', 115: '4',
 116: '5', 117: '6', 118: '7', 119: '8', 121: '9', 122: '=', 123: '+',
 124: '-', 125: '/', 126: '*', 127: 'a', 128: 'b', 129: 'c', 131: 'd',
@@ -49,14 +49,12 @@ def gera_primos(n):
     # Executa 10 testes de Miller-Rabin e reinicia o teste se p for composto
         for _ in range(1, 11):
             base = randrange(1, primo)
-            if(miller_rabin(primo, base) == 'Composto'):
+            if miller_rabin(primo, base) == 'Composto':
                 break
         else:
             break
-        
-    return primo
 
-print(gera_primos(9))
+    return primo
 
 # Questão 9b.
 def gera_chaves(a, b):
@@ -95,20 +93,49 @@ def gera_chaves(a, b):
     return n, e, d, p, q, inverso_de_p, inverso_de_q, dp_reduzido, dq_reduzido
 
 # Questão 9c.
-def quebra_em_blocos(texto):
-    pass
+def gera_blocos(texto):
+    """
+    Quebra a mensagem em uma lista contendo um bloco de três em três
+    """
+    blocos = list()
+    for i in range(0, len(texto), 3):
+        blocos.append(texto[i:i+3])
+    return blocos
 
 def encriptar(texto, n, e):
+    """
+    Encripta uma mensagem utilizando os conceitos de RSA
+    Entrada: texto a ser encriptado, chave pública, módulo público
+    Saída: Bloco das mensagens encriptadas
+    """
     for simb, cod in símbolos_para_códigos.items():
         texto = texto.replace(simb, str(cod))
+    
+    bloco_encriptado = gera_blocos(texto)
+    for i in range(len(bloco_encriptado)):
+        bloco_encriptado[i] = pow(int(bloco_encriptado[i]), e, n)
+    
+    return bloco_encriptado
 
-    #TODO: Função para quebrar a mensagem em blocos
-    
-    return texto
-    
 # Questão 9d.
-def junta_os_blocos():
-    pass
+def descriptar(texto, n, d):
+    for i in range(len(texto)):
+        texto[i] = pow(int(texto[i]), d, n)
 
-def descriptar(blocos, n, d):
+    novo_bloco = ''.join(str(texto))
+    novo_bloco = novo_bloco.replace("[", "")
+    novo_bloco = novo_bloco.replace("]", "")
+    novo_bloco = novo_bloco.replace(",", "")
+    novo_bloco = novo_bloco.replace(" ", "")
+    novo_bloco = gera_blocos(novo_bloco)
+    
+    for i in range(len(novo_bloco)):
+        for cod, simb in códigos_para_símbolos.items():
+            if str(novo_bloco[i]) == str(cod):
+                novo_bloco[i] = simb
+    
+    mensagem = ''.join(novo_bloco)
+    return mensagem
+
+def descriptar_tcr(texto, n, d):
     pass
