@@ -37,67 +37,75 @@ símbolos_para_códigos = {'0': 111, '1': 112, '2': 113, '3': 114, '4': 115,
 ':': 227, '_': 228, '(': 229, ')': 231, '"': 232, '#': 233, '$': 234,
 '%': 235, '@': 236, ' ': 237, '\n': 238}
 
-# Questão 9a. 
+# Questão 9a.
 def gera_primos(n):
     """
     Gera um número p primo tal que p é: (10 ** n) < p < (10 ** n+2)
     """
     while True:
-        contador = 0
-        # Sorteia de 10^(n-1) <= primo < (10^n+2)
-        primo = randrange(pow(10, n-1), pow(10, n+2)) 
-        if primo % 2 == 0:
-            continue
+        # Sorteia p de 10^(n-1) até algum número menor do que (10 ** n+2)
+        primo = randrange(pow(10, n-1), pow(10, n+2))
+
+    # Executa 10 testes de Miller-Rabin e reinicia o teste se p for composto
         for _ in range(1, 11):
             base = randrange(1, primo)
-            if(miller_rabin(primo, base) == 'Inconclusivo'):
-                contador += 1
-        if contador == 10:
+            if(miller_rabin(primo, base) == 'Composto'):
+                break
+        else:
             break
+        
     return primo
 
+print(gera_primos(9))
+
 # Questão 9b.
-def gera_chaves(p, q):
+def gera_chaves(a, b):
     """
-    Gerador de chaves do RSA retornando o módulo público, chave pública
-    chave privada, o inverso de p mod q, inverso de q mod p
-    e a forma reduzida de d mod (p-1), (q-1) 
+    Gerador de chaves RSA 
+    Entrada: 
+    a -> quantidade de algarismos de p para sorteio de um número primo p
+    b -> quantidade de algarismos de q para sorteio de um número primo q
+    Saída: n, e, d, inverso de p mod q, inverso de q mod p, 
+    forma reduzida de d mod p e d mod q
     """
-    primo_p = gera_primos(p)
-    primo_q = gera_primos(q)
-    n = primo_p * primo_q
-    phi = (primo_p - 1) * (primo_q - 1)
+    p = gera_primos(a)
+    q = gera_primos(b)
+    n = p * q
+    phi = (p - 1) * (q - 1)
     e = 2
+
     while euclides(e, phi) != 1:
         e += 1
 
     d = euclides_estendido(e, phi)
-    # Somamos ao d o phi para evitar um expoente d negativo
-    d += phi
-
-    forma_reduzida_d_p = pow(d, 1, primo_p-1)
-    forma_reduzida_d_q = pow(d, 1, primo_q-1)
+    if d < 0:
+        d %= phi
     
-    inverso_de_p = euclides_estendido(primo_p, primo_q)
+    dp_reduzido = pow(d, 1, p-1)
+    dq_reduzido = pow(d, 1, q-1)
+    
+    inverso_de_p = euclides_estendido(p, q)
     if inverso_de_p < 0:
-        inverso_de_p += primo_q
+        inverso_de_p %= q
 
-    inverso_de_q = euclides_estendido(primo_q, primo_p)
+    inverso_de_q = euclides_estendido(q, p)
     if inverso_de_q < 0:
-        inverso_de_q += primo_p
+        inverso_de_q %= p
 
-
-    return n, e, d, primo_p, primo_q, inverso_de_p, inverso_de_q, forma_reduzida_d_p, forma_reduzida_d_q
-
-print(gera_chaves(3, 5))
+    return n, e, d, p, q, inverso_de_p, inverso_de_q, dp_reduzido, dq_reduzido
 
 # Questão 9c.
-def quebra_em_blocos():
+def quebra_em_blocos(texto):
     pass
 
 def encriptar(texto, n, e):
-    pass
+    for simb, cod in símbolos_para_códigos.items():
+        texto = texto.replace(simb, str(cod))
 
+    #TODO: Função para quebrar a mensagem em blocos
+    
+    return texto
+    
 # Questão 9d.
 def junta_os_blocos():
     pass

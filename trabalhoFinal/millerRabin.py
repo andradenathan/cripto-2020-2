@@ -9,9 +9,7 @@ def fatoracao(n):
 
 
 def miller_rabin(mod, base):
-    """
-    Executa o Teste de Miller Rabin para a base e módulo positivo e
-    retorna False se o número for composto e True se nada concluirmos do teste"""
+    "Executa o Teste de Miller Rabin para a base e módulo positivo"
     if mod % 2 == 0 or mod == 1:
         return 'Composto'
     base %= mod
