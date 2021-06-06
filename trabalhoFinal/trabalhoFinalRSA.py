@@ -1,6 +1,7 @@
 from millerRabin import miller_rabin
 from euclides import euclides, euclides_estendido
 from random import randrange
+import re
 
 # Códigos das letras & símbolos para encriptação/desencriptação das mensagens
 códigos_para_símbolos = {111: '0', 112: '1', 113: '2', 114: '3', 115: '4',
@@ -43,10 +44,7 @@ def gera_primos(n):
     Gera um número p primo tal que p é: (10 ** n) < p < (10 ** n+2)
     """
     while True:
-        # Sorteia p de 10^(n-1) até algum número menor do que (10 ** n+2)
         primo = randrange(pow(10, n-1), pow(10, n+2))
-
-    # Executa 10 testes de Miller-Rabin e reinicia o teste se p for composto
         for _ in range(1, 11):
             base = randrange(1, primo)
             if miller_rabin(primo, base) == 'Composto':
@@ -61,8 +59,8 @@ def gera_chaves(a, b):
     """
     Gerador de chaves RSA 
     Entrada: 
-    a -> quantidade de algarismos de p para sorteio de um número primo p
-    b -> quantidade de algarismos de q para sorteio de um número primo q
+    a -> Quantidade de algarismos de p para sorteio de um número primo p
+    b -> Quantidade de algarismos de q para sorteio de um número primo q
     Saída: n, e, d, inverso de p mod q, inverso de q mod p, 
     forma reduzida de d mod p e d mod q
     """
@@ -105,7 +103,7 @@ def gera_blocos(texto):
 def encriptar(texto, n, e):
     """
     Encripta uma mensagem utilizando os conceitos de RSA
-    Entrada: texto a ser encriptado, chave pública, módulo público
+    Entrada: Texto a ser encriptado, expoente público, módulo público
     Saída: Bloco das mensagens encriptadas
     """
     for simb, cod in símbolos_para_códigos.items():
@@ -119,23 +117,49 @@ def encriptar(texto, n, e):
 
 # Questão 9d.
 def descriptar(texto, n, d):
+    """
+    Descripta uma mensagem utilizando os conceitos de RSA
+    Entrada: Texto encriptado, módulo público e expoente privado
+    Saída: Mensagem descriptada
+    """
     for i in range(len(texto)):
         texto[i] = pow(int(texto[i]), d, n)
 
-    novo_bloco = ''.join(str(texto))
-    novo_bloco = novo_bloco.replace("[", "")
-    novo_bloco = novo_bloco.replace("]", "")
-    novo_bloco = novo_bloco.replace(",", "")
-    novo_bloco = novo_bloco.replace(" ", "")
-    novo_bloco = gera_blocos(novo_bloco)
-    
-    for i in range(len(novo_bloco)):
+    junta_bloco = ''.join(str(texto))
+    junta_bloco = re.sub(r'[^0-9]', '', junta_bloco)
+    junta_bloco = gera_blocos(junta_bloco)
+    for i in range(len(junta_bloco)):
         for cod, simb in códigos_para_símbolos.items():
-            if str(novo_bloco[i]) == str(cod):
-                novo_bloco[i] = simb
+            if str(junta_bloco[i]) == str(cod):
+                junta_bloco[i] = simb
     
-    mensagem = ''.join(novo_bloco)
+    mensagem = ''.join(junta_bloco)
     return mensagem
 
-def descriptar_tcr(texto, n, d):
-    pass
+def descriptar_tcr(texto, n, d_mod_p, d_mod_q):
+    """
+    Descripta uma mensagem utilizando os conceitos de RSA
+    com auxílio do Teorema Chinês do Resto para reduzir o sistema de congruência
+    Entrada: Texto encriptado, módulo público e expoente privado mod p e mod q
+    Saída: Mensagem descriptada 
+    """
+    p = int(input('Insira um primo p: '))
+    q = int(input('Insira um primo q: '))
+    inverso_p = int(input('Insira o inverso de p mod q: '))
+    inverso_q = int(input('Insira o inverso de q mod p: '))
+
+    for i in range(len(texto)):
+        texto[i] = (pow(int(texto[i]), d_mod_q, q) * inverso_p * p) + (pow(int(texto[i]), d_mod_p, p) * q * inverso_q) 
+        texto[i] = pow(texto[i], 1, n)
+
+    junta_bloco = ''.join(str(texto))
+    junta_bloco = re.sub(r'[^0-9]', '', junta_bloco)
+    junta_bloco = gera_blocos(junta_bloco)
+    
+    for i in range(len(junta_bloco)):
+        for cod, simb in códigos_para_símbolos.items():
+            if str(junta_bloco[i]) == str(cod):
+                junta_bloco[i] = simb
+    
+    mensagem = ''.join(junta_bloco)
+    return mensagem
