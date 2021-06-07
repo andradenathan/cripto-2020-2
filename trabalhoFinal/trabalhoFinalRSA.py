@@ -1,9 +1,8 @@
 from millerRabin import miller_rabin
 from euclides import euclides, euclides_estendido
 from random import randrange
-import re
+from re import sub
 
-# Códigos das letras & símbolos para encriptação/desencriptação das mensagens
 códigos_para_símbolos = {111: '0', 112: '1', 113: '2', 114: '3', 115: '4',
 116: '5', 117: '6', 118: '7', 119: '8', 121: '9', 122: '=', 123: '+',
 124: '-', 125: '/', 126: '*', 127: 'a', 128: 'b', 129: 'c', 131: 'd',
@@ -126,7 +125,7 @@ def descriptar(texto, n, d):
         texto[i] = pow(int(texto[i]), d, n)
 
     junta_bloco = ''.join(str(texto))
-    junta_bloco = re.sub(r'[^0-9]', '', junta_bloco)
+    junta_bloco = sub(r'[^0-9]', '', junta_bloco)
     junta_bloco = gera_blocos(junta_bloco)
     for i in range(len(junta_bloco)):
         for cod, simb in códigos_para_símbolos.items():
@@ -136,24 +135,19 @@ def descriptar(texto, n, d):
     mensagem = ''.join(junta_bloco)
     return mensagem
 
-def descriptar_tcr(texto, n, d_mod_p, d_mod_q):
+def descriptar_tcr(texto, n, d_mod_p, d_mod_q, p, q, inverso_p, inverso_q):
     """
     Descripta uma mensagem utilizando os conceitos de RSA
     com auxílio do Teorema Chinês do Resto para reduzir o sistema de congruência
     Entrada: Texto encriptado, módulo público e expoente privado mod p e mod q
     Saída: Mensagem descriptada 
     """
-    p = int(input('Insira um primo p: '))
-    q = int(input('Insira um primo q: '))
-    inverso_p = int(input('Insira o inverso de p mod q: '))
-    inverso_q = int(input('Insira o inverso de q mod p: '))
-
     for i in range(len(texto)):
         texto[i] = (pow(int(texto[i]), d_mod_q, q) * inverso_p * p) + (pow(int(texto[i]), d_mod_p, p) * q * inverso_q) 
         texto[i] = pow(texto[i], 1, n)
 
     junta_bloco = ''.join(str(texto))
-    junta_bloco = re.sub(r'[^0-9]', '', junta_bloco)
+    junta_bloco = sub(r'[^0-9]', '', junta_bloco)
     junta_bloco = gera_blocos(junta_bloco)
     
     for i in range(len(junta_bloco)):
@@ -163,3 +157,5 @@ def descriptar_tcr(texto, n, d_mod_p, d_mod_q):
     
     mensagem = ''.join(junta_bloco)
     return mensagem
+
+print(descriptar(encriptar('Cebola da Indução', 323784694590703589921, 5), 323784694590703589921, 129513794414191701197))
