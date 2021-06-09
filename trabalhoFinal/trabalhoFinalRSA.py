@@ -31,8 +31,7 @@ def gera_chaves(a, b):
     Saída: n, e, d, inverso de p mod q, inverso de q mod p, 
     forma reduzida de d mod p e d mod q
     """
-    p = gera_primos(a)
-    q = gera_primos(b)
+    p, q = gera_primos(a), gera_primos(b)
     n = p * q
     phi = (p - 1) * (q - 1)
     e = 2
@@ -41,17 +40,16 @@ def gera_chaves(a, b):
         e += 1
 
     d = euclides_estendido(e, phi)
+    inverso_de_p = euclides_estendido(p, q)
+    inverso_de_q = euclides_estendido(q, p)
+    dp_reduzido, dq_reduzido = pow(d, 1, p-1), pow(d, 1, q-1)
+
     if d < 0:
         d %= phi
-    
-    dp_reduzido = pow(d, 1, p-1)
-    dq_reduzido = pow(d, 1, q-1)
-    
-    inverso_de_p = euclides_estendido(p, q)
+
     if inverso_de_p < 0:
         inverso_de_p %= q
 
-    inverso_de_q = euclides_estendido(q, p)
     if inverso_de_q < 0:
         inverso_de_q %= p
 
@@ -118,8 +116,11 @@ def descriptar_tcr(texto, n, d_mod_p, d_mod_q, p, q, inverso_p, inverso_q):
         for cod, simb in códigos_para_símbolos.items():
             if texto[i] == str(cod):
                 texto[i] = simb
-                
+ 
     mensagem = ''.join(texto)
     return mensagem
 
-print(descriptar(encriptar('Cebola da Indução', 323784694590703589921, 5), 323784694590703589921, 129513794414191701197))
+print(gera_chaves(5, 7))
+# Testes feitos a partir da chave gerada acima
+print(descriptar(encriptar('Cebola da Indução', 6098822275103249, 7), 6098822275103249, 2613780564601783))
+print(descriptar_tcr(encriptar('Cebola da Indução', 6098822275103249, 7), 6098822275103249, 2747623, 815389687, 6411121, 951287969, 830850597, 811677))
