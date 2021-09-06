@@ -1,4 +1,4 @@
-# Disciplina de Números Inteiros e Criptografia do CC feito em 2020.2.
+# Números Inteiros e Criptografia (2020.2) - Autor: Nathan Andrade.
 Nesta disciplina os seguintes tópicos foram abordados:
 - Teoremas e provas
 - Linguagem matemática, seus conectivos e a tabela verdade
