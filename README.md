@@ -1,4 +1,4 @@
-# Números Inteiros e Criptografia (2020.2) - Autor: Nathan Andrade.
+# Números Inteiros e Criptografia
 Nesta disciplina os seguintes tópicos foram abordados:
 - Teoremas e provas
 - Linguagem matemática, seus conectivos e a tabela verdade
